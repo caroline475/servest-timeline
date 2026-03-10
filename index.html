@@ -21,8 +21,8 @@
     height: 100vh;
     overflow: hidden;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: var(--jem-navy);
-    color: var(--jem-white);
+    background: var(--jem-white);
+    color: var(--jem-navy);
     -webkit-font-smoothing: antialiased;
   }
 
@@ -124,7 +124,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    padding: 36px 52px 32px;
+    padding: 28px 48px 24px;
     overflow: hidden;
   }
 
@@ -133,7 +133,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     flex-shrink: 0;
   }
   .header-left {
@@ -156,13 +156,12 @@
     letter-spacing: -0.5px;
   }
   .logo-x {
-    color: rgba(252,252,252,0.3);
+    color: #ccc;
     font-size: 18px;
   }
   .servest-logo img {
     height: 36px;
-    filter: brightness(0) invert(1);
-    opacity: 0.85;
+    object-fit: contain;
   }
   .header-title {
     text-align: right;
@@ -171,7 +170,7 @@
     font-size: 20px;
     font-weight: 700;
     line-height: 1.2;
-    color: var(--jem-white);
+    color: var(--jem-navy);
   }
   .header-title .tag {
     font-size: 11px;
@@ -193,7 +192,7 @@
   .phases {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 28px;
+    gap: 32px;
     flex: 1;
     min-height: 0;
   }
@@ -208,7 +207,7 @@
 
   /* Phase headers */
   .phase-header {
-    padding: 18px 22px 14px;
+    padding: 16px 20px 12px;
     flex-shrink: 0;
     border-radius: 20px 20px 0 0;
   }
@@ -217,11 +216,10 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
-    opacity: 0.6;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
   .phase-title {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 2px;
@@ -229,34 +227,37 @@
   .phase-sub {
     font-size: 11px;
     font-weight: 500;
-    opacity: 0.65;
+    opacity: 0.55;
   }
 
   /* Phase 1 */
-  .phase-1 { background: rgba(255, 105, 127, 0.12); border: 1.5px solid rgba(255, 105, 127, 0.25); }
-  .phase-1 .phase-header { border-bottom: 1px solid rgba(255, 105, 127, 0.15); }
-  .phase-1 .phase-num { color: var(--jem-pink); }
+  .phase-1 { background: var(--jem-white); border: 2px solid #e8e8e8; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .phase-1 .phase-header { background: var(--jem-pink); border-radius: 18px 18px 0 0; color: var(--jem-white); }
+  .phase-1 .phase-num { color: rgba(255,255,255,0.7); }
   .phase-1 .phase-title { color: var(--jem-white); }
+  .phase-1 .phase-sub { color: rgba(255,255,255,0.7); }
 
   /* Phase 2 */
-  .phase-2 { background: rgba(255, 105, 127, 0.08); border: 1.5px solid rgba(255, 105, 127, 0.18); }
-  .phase-2 .phase-header { border-bottom: 1px solid rgba(255, 105, 127, 0.12); }
+  .phase-2 { background: var(--jem-white); border: 2px solid #e8e8e8; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .phase-2 .phase-header { background: var(--jem-navy); border-radius: 18px 18px 0 0; color: var(--jem-white); }
   .phase-2 .phase-num { color: var(--jem-pink); }
   .phase-2 .phase-title { color: var(--jem-white); }
+  .phase-2 .phase-sub { color: rgba(255,255,255,0.55); }
 
   /* Phase 3 */
-  .phase-3 { background: rgba(255, 105, 127, 0.05); border: 1.5px solid rgba(255, 105, 127, 0.12); }
-  .phase-3 .phase-header { border-bottom: 1px solid rgba(255, 105, 127, 0.08); }
+  .phase-3 { background: var(--jem-white); border: 2px solid #e8e8e8; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .phase-3 .phase-header { background: var(--jem-navy); border-radius: 18px 18px 0 0; color: var(--jem-white); }
   .phase-3 .phase-num { color: var(--jem-pink); }
   .phase-3 .phase-title { color: var(--jem-white); }
+  .phase-3 .phase-sub { color: rgba(255,255,255,0.55); }
 
   /* Phase body */
   .phase-body {
-    padding: 16px 20px 18px;
+    padding: 14px 18px 16px;
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     min-height: 0;
   }
 
@@ -266,38 +267,30 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     margin-top: 6px;
   }
   .section-label.deliver { color: var(--jem-pink); }
-  .section-label.eliminate { color: #e74c3c; margin-top: 10px; }
+  .section-label.eliminate { color: #c0392b; margin-top: 8px; }
 
   /* What we deliver items */
   .deliver-item {
     display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 8px 12px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.06);
+    align-items: center;
+    gap: 10px;
+    padding: 7px 12px;
+    background: var(--jem-grey);
+    border-radius: 10px;
   }
   .deliver-item .icon {
-    font-size: 16px;
+    font-size: 15px;
     flex-shrink: 0;
-    margin-top: 1px;
   }
   .deliver-item .label {
     font-size: 12px;
     font-weight: 600;
-    color: var(--jem-white);
-    line-height: 1.35;
-  }
-  .deliver-item .desc {
-    font-size: 10.5px;
-    color: rgba(252,252,252,0.55);
-    line-height: 1.4;
-    margin-top: 2px;
+    color: var(--jem-navy);
+    line-height: 1.3;
   }
 
   /* Problems eliminated items */
@@ -305,47 +298,74 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 9px 14px;
-    background: rgba(231, 76, 60, 0.1);
+    padding: 7px 12px;
+    background: #fef2f2;
     border-radius: 10px;
-    border: 1px solid rgba(231, 76, 60, 0.18);
+    border: 1px solid #fde8e8;
   }
   .elim-item .strike {
     font-size: 11px;
     font-weight: 500;
-    color: rgba(252,252,252,0.7);
+    color: #888;
     text-decoration: line-through;
-    line-height: 1.4;
+    line-height: 1.35;
   }
   .elim-x {
-    font-size: 14px;
+    font-size: 13px;
     color: #e74c3c;
     font-weight: 700;
     flex-shrink: 0;
   }
 
-  /* Phase savings footer */
-  .phase-savings {
+  /* Phase footer: savings + cost side by side */
+  .phase-footer {
     margin-top: auto;
-    padding: 12px 16px;
-    background: rgba(255, 105, 127, 0.1);
-    border-radius: 14px;
-    border: 1px solid rgba(255, 105, 127, 0.15);
     display: flex;
-    align-items: center;
-    gap: 10px;
+    gap: 8px;
+    padding-top: 8px;
+  }
+  .phase-savings {
+    flex: 1;
+    padding: 10px 14px;
+    background: var(--jem-cream);
+    border-radius: 12px;
   }
   .phase-savings .amount {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 800;
     color: var(--jem-pink);
-    white-space: nowrap;
+    line-height: 1.2;
   }
   .phase-savings .savings-label {
-    font-size: 10px;
-    color: rgba(252,252,252,0.55);
+    font-size: 9px;
+    color: #888;
     line-height: 1.4;
     font-weight: 500;
+    margin-top: 2px;
+  }
+
+  .jem-cost {
+    padding: 10px 14px;
+    background: var(--jem-navy);
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 80px;
+  }
+  .jem-cost .cost-val {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--jem-white);
+    line-height: 1.2;
+  }
+  .jem-cost .cost-label {
+    font-size: 8px;
+    color: rgba(252,252,252,0.55);
+    line-height: 1.3;
+    font-weight: 500;
+    margin-top: 2px;
   }
 
   /* ── Bottom bar ── */
@@ -353,30 +373,30 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 16px;
     flex-shrink: 0;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 14px;
+    border-top: 2px solid var(--jem-grey);
   }
 
   .total-block {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
   }
   .total-block .total-val {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 800;
     color: var(--jem-pink);
     line-height: 1;
   }
   .total-block .total-meta {
     font-size: 11px;
-    color: rgba(252,252,252,0.5);
+    color: #888;
     line-height: 1.4;
   }
   .total-block .total-meta strong {
-    color: rgba(252,252,252,0.8);
+    color: var(--jem-navy);
     font-weight: 600;
   }
 
@@ -388,13 +408,12 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    background: rgba(255,255,255,0.05);
+    background: var(--jem-grey);
     border-radius: 999px;
     padding: 6px 14px;
     font-size: 10.5px;
     font-weight: 600;
-    color: rgba(252,252,252,0.65);
-    border: 1px solid rgba(255,255,255,0.08);
+    color: #666;
     white-space: nowrap;
   }
   .sp .sp-dot {
@@ -408,7 +427,7 @@
   /* ── Timeline arrow between phases ── */
   .timeline-arrow {
     position: absolute;
-    right: -24px;
+    right: -22px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 50;
@@ -422,30 +441,7 @@
     color: var(--jem-white);
     font-size: 15px;
     font-weight: 700;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-  }
-
-  /* ── Jem cost badge ── */
-  .jem-cost {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .jem-cost .cost-val {
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--jem-white);
-    white-space: nowrap;
-  }
-  .jem-cost .cost-label {
-    font-size: 10px;
-    color: rgba(252,252,252,0.5);
-    line-height: 1.4;
-    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(255, 105, 127, 0.4);
   }
 
   /* ── Replace ER badge ── */
@@ -453,16 +449,17 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(255, 105, 127, 0.15);
-    border: 1.5px solid rgba(255, 105, 127, 0.3);
+    background: #fef2f2;
+    border: 1.5px solid var(--jem-pink);
     border-radius: 999px;
-    padding: 5px 14px;
-    font-size: 10.5px;
+    padding: 4px 14px;
+    font-size: 10px;
     font-weight: 700;
     color: var(--jem-pink);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-top: 4px;
+    align-self: flex-start;
   }
 </style>
 </head>
@@ -518,41 +515,26 @@
 
           <div class="deliver-item">
             <div class="icon">&#9989;</div>
-            <div>
-              <div class="label">Instant roll call at shift start</div>
-              <div class="desc">Automated WhatsApp check-in the moment a shift begins. No-shows flagged in seconds.</div>
-            </div>
+            <div class="label">Instant roll call at shift start</div>
           </div>
-
           <div class="deliver-item">
             <div class="icon">&#128276;</div>
-            <div>
-              <div class="label">Pre-shift reminders</div>
-              <div class="desc">30–60 min before shift. Reduces no-shows before they happen.</div>
-            </div>
+            <div class="label">Pre-shift reminders (30–60 min before)</div>
           </div>
-
           <div class="deliver-item">
             <div class="icon">&#128260;</div>
-            <div>
-              <div class="label">Manual shift replacement</div>
-              <div class="desc">Control room triggers replacement via Jem. Nearest skilled, available guard is offered the shift.</div>
-            </div>
+            <div class="label">Manual shift replacement via Jem</div>
           </div>
-
           <div class="deliver-item">
             <div class="icon">&#128202;</div>
-            <div>
-              <div class="label">Live attendance dashboard</div>
-              <div class="desc">Real-time visibility across all 500 sites. Who's on, who's late, who's missing.</div>
-            </div>
+            <div class="label">Live attendance dashboard (all 500 sites)</div>
           </div>
 
           <div class="section-label eliminate">Problems eliminated</div>
 
           <div class="elim-item">
             <span class="elim-x">&#10005;</span>
-            <span class="strike">90-minute blind spot before anyone notices a no-show</span>
+            <span class="strike">90-min blind spot before anyone notices a no-show</span>
           </div>
           <div class="elim-item">
             <span class="elim-x">&#10005;</span>
@@ -563,14 +545,15 @@
             <span class="strike">Fraudulent time claims (5 min/guard/day = R7.5M/yr)</span>
           </div>
 
-          <div class="phase-savings">
-            <div class="amount">R5M–R7.5M</div>
-            <div class="savings-label">Annual savings from<br/>revenue leakage recovery &amp; admin reduction</div>
-          </div>
-
-          <div class="jem-cost">
-            <div class="cost-val">R15</div>
-            <div class="cost-label">per head / month</div>
+          <div class="phase-footer">
+            <div class="phase-savings">
+              <div class="amount">R5M–R7.5M</div>
+              <div class="savings-label">Annual savings from revenue<br/>leakage recovery &amp; admin reduction</div>
+            </div>
+            <div class="jem-cost">
+              <div class="cost-val">R15</div>
+              <div class="cost-label">per head<br/>per month</div>
+            </div>
           </div>
         </div>
       </div>
@@ -588,33 +571,22 @@
 
           <div class="deliver-item">
             <div class="icon">&#129302;</div>
-            <div>
-              <div class="label">AI calls to no-show guards</div>
-              <div class="desc">Automated voice calls to absent guards. Escalation if unanswered. Zero human effort.</div>
-            </div>
+            <div class="label">AI calls to no-show guards</div>
           </div>
-
           <div class="deliver-item">
             <div class="icon">&#9889;</div>
-            <div>
-              <div class="label">Automated shift replacement</div>
-              <div class="desc">Offers shifts to nearest, appropriately skilled, available guards. Fair and instant.</div>
-            </div>
+            <div class="label">Automated shift replacement</div>
           </div>
-
           <div class="deliver-item">
             <div class="icon">&#128200;</div>
-            <div>
-              <div class="label">Escalation workflows</div>
-              <div class="desc">Area managers only involved when the system can't resolve it. Exception-based management.</div>
-            </div>
+            <div class="label">Escalation workflows (exception-based)</div>
           </div>
 
           <div class="section-label eliminate">Problems eliminated</div>
 
           <div class="elim-item">
             <span class="elim-x">&#10005;</span>
-            <span class="strike">400–600 manual calls per day (13–20 hrs of staff time)</span>
+            <span class="strike">400–600 manual calls/day (13–20 hrs staff time)</span>
           </div>
           <div class="elim-item">
             <span class="elim-x">&#10005;</span>
@@ -625,14 +597,15 @@
             <span class="strike">Sites left uncovered during replacement search</span>
           </div>
 
-          <div class="phase-savings">
-            <div class="amount">R2M–R3.5M</div>
-            <div class="savings-label">Annual savings from<br/>replacement reduction &amp; admin time reclaimed</div>
-          </div>
-
-          <div class="jem-cost">
-            <div class="cost-val">R25</div>
-            <div class="cost-label">per head / month</div>
+          <div class="phase-footer">
+            <div class="phase-savings">
+              <div class="amount">R2M–R3.5M</div>
+              <div class="savings-label">Annual savings from replacement<br/>reduction &amp; admin time reclaimed</div>
+            </div>
+            <div class="jem-cost">
+              <div class="cost-val">R25</div>
+              <div class="cost-label">per head<br/>per month</div>
+            </div>
           </div>
         </div>
       </div>
@@ -649,26 +622,15 @@
 
           <div class="deliver-item">
             <div class="icon">&#129504;</div>
-            <div>
-              <div class="label">AI-optimised rostering</div>
-              <div class="desc">Algorithmic scheduling that minimises overtime and matches skills to sites.</div>
-            </div>
+            <div class="label">AI-optimised rostering</div>
           </div>
-
           <div class="deliver-item">
             <div class="icon">&#9878;&#65039;</div>
-            <div>
-              <div class="label">Fair overtime distribution</div>
-              <div class="desc">Even share for every guard. Transparent, auditable, complaint-free.</div>
-            </div>
+            <div class="label">Fair overtime distribution</div>
           </div>
-
           <div class="deliver-item">
             <div class="icon">&#128279;</div>
-            <div>
-              <div class="label">Easy Roster data ingestion</div>
-              <div class="desc">We import ER as a starting point — then progressively replace it. No big-bang migration.</div>
-            </div>
+            <div class="label">Easy Roster ingestion &amp; progressive replacement</div>
           </div>
 
           <div class="section-label eliminate">Problems eliminated</div>
@@ -688,14 +650,15 @@
 
           <div class="er-badge">&#9888;&#65039; Replaces Easy Roster</div>
 
-          <div class="phase-savings">
-            <div class="amount">R2M–R4M</div>
-            <div class="savings-label">Annual savings from<br/>overtime reduction &amp; skills optimisation</div>
-          </div>
-
-          <div class="jem-cost">
-            <div class="cost-val">R40</div>
-            <div class="cost-label">per head / month</div>
+          <div class="phase-footer">
+            <div class="phase-savings">
+              <div class="amount">R2M–R4M</div>
+              <div class="savings-label">Annual savings from overtime<br/>reduction &amp; skills optimisation</div>
+            </div>
+            <div class="jem-cost">
+              <div class="cost-val">R40</div>
+              <div class="cost-label">per head<br/>per month</div>
+            </div>
           </div>
         </div>
       </div>
