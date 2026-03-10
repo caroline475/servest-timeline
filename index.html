@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jem × Servest — T&A Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --jem-pink: #FF697F;
+    --jem-pink-hover: #ff4d6b;
+    --jem-navy: #062133;
+    --jem-white: #FCFCFC;
+    --jem-grey: #F2F2F2;
+    --jem-cream: #FFF7EC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--jem-navy);
+    color: var(--jem-white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Password Screen ── */
+  #password-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--jem-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.4s, visibility 0.4s;
+  }
+  #password-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .pw-box {
+    text-align: center;
+    max-width: 380px;
+    width: 100%;
+    padding: 0 24px;
+  }
+  .pw-box .pw-logo {
+    display: inline-flex;
+    align-items: center;
+    background: var(--jem-pink);
+    border-radius: 999px;
+    padding: 12px 32px;
+    height: 52px;
+    margin-bottom: 40px;
+  }
+  .pw-box .pw-logo span {
+    color: var(--jem-white);
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: -0.5px;
+  }
+  .pw-box h2 {
+    color: var(--jem-white);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .pw-box p {
+    color: rgba(252,252,252,0.6);
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+  .pw-input-row {
+    display: flex;
+    gap: 12px;
+  }
+  .pw-input-row input {
+    flex: 1;
+    padding: 14px 20px;
+    border-radius: 999px;
+    border: 2px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
+    color: var(--jem-white);
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .pw-input-row input::placeholder { color: rgba(252,252,252,0.35); }
+  .pw-input-row input:focus { border-color: var(--jem-pink); }
+  .pw-input-row button {
+    background: var(--jem-pink);
+    color: var(--jem-white);
+    border: none;
+    border-radius: 999px;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .pw-input-row button:hover { background: var(--jem-pink-hover); }
+  .pw-error {
+    color: var(--jem-pink);
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 14px;
+    min-height: 20px;
+  }
+
+  /* ── Slide container ── */
+  #page-content { display: none; }
+  #page-content.visible { display: flex; }
+
+  .slide {
+    width: 100vw;
+    height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 52px 32px;
+    overflow: hidden;
+  }
+
+  /* ── Header row ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-shrink: 0;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .jem-logo {
+    display: inline-flex;
+    align-items: center;
+    background: var(--jem-pink);
+    border-radius: 999px;
+    padding: 8px 22px;
+    height: 40px;
+  }
+  .jem-logo span {
+    color: var(--jem-white);
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+  }
+  .logo-x {
+    color: rgba(252,252,252,0.3);
+    font-size: 18px;
+  }
+  .servest-logo img {
+    height: 30px;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+  }
+  .header-title {
+    text-align: right;
+  }
+  .header-title h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--jem-white);
+  }
+  .header-title .tag {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--jem-pink);
+  }
+
+  /* ── Timeline area ── */
+  .timeline-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  /* ── Phase columns ── */
+  .phases {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .phase {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Phase headers */
+  .phase-header {
+    padding: 18px 22px 14px;
+    flex-shrink: 0;
+  }
+  .phase-num {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.6;
+    margin-bottom: 4px;
+  }
+  .phase-title {
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  .phase-sub {
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.65;
+  }
+
+  /* Phase 1 */
+  .phase-1 { background: rgba(255, 105, 127, 0.12); border: 1.5px solid rgba(255, 105, 127, 0.25); }
+  .phase-1 .phase-header { border-bottom: 1px solid rgba(255, 105, 127, 0.15); }
+  .phase-1 .phase-num { color: var(--jem-pink); }
+  .phase-1 .phase-title { color: var(--jem-white); }
+
+  /* Phase 2 */
+  .phase-2 { background: rgba(255, 105, 127, 0.08); border: 1.5px solid rgba(255, 105, 127, 0.18); }
+  .phase-2 .phase-header { border-bottom: 1px solid rgba(255, 105, 127, 0.12); }
+  .phase-2 .phase-num { color: var(--jem-pink); }
+  .phase-2 .phase-title { color: var(--jem-white); }
+
+  /* Phase 3 */
+  .phase-3 { background: rgba(255, 105, 127, 0.05); border: 1.5px solid rgba(255, 105, 127, 0.12); }
+  .phase-3 .phase-header { border-bottom: 1px solid rgba(255, 105, 127, 0.08); }
+  .phase-3 .phase-num { color: var(--jem-pink); }
+  .phase-3 .phase-title { color: var(--jem-white); }
+
+  /* Phase body */
+  .phase-body {
+    padding: 14px 20px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0;
+  }
+
+  /* Section labels */
+  .section-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 2px;
+    margin-top: 4px;
+  }
+  .section-label.deliver { color: var(--jem-pink); }
+  .section-label.eliminate { color: #e74c3c; }
+
+  /* What we deliver items */
+  .deliver-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .deliver-item .icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .deliver-item .label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--jem-white);
+    line-height: 1.35;
+  }
+  .deliver-item .desc {
+    font-size: 10.5px;
+    color: rgba(252,252,252,0.55);
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+
+  /* Problems eliminated items */
+  .elim-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: rgba(231, 76, 60, 0.08);
+    border-radius: 10px;
+    border: 1px solid rgba(231, 76, 60, 0.12);
+  }
+  .elim-item .strike {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(252,252,252,0.5);
+    text-decoration: line-through;
+    line-height: 1.3;
+  }
+  .elim-x {
+    font-size: 13px;
+    color: #e74c3c;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Phase savings footer */
+  .phase-savings {
+    margin-top: auto;
+    padding: 12px 16px;
+    background: rgba(255, 105, 127, 0.1);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 105, 127, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .phase-savings .amount {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--jem-pink);
+    white-space: nowrap;
+  }
+  .phase-savings .savings-label {
+    font-size: 10px;
+    color: rgba(252,252,252,0.55);
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  /* ── Bottom bar ── */
+  .bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    flex-shrink: 0;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .total-block {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .total-block .total-val {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--jem-pink);
+    line-height: 1;
+  }
+  .total-block .total-meta {
+    font-size: 11px;
+    color: rgba(252,252,252,0.5);
+    line-height: 1.4;
+  }
+  .total-block .total-meta strong {
+    color: rgba(252,252,252,0.8);
+    font-weight: 600;
+  }
+
+  .selling-points {
+    display: flex;
+    gap: 10px;
+  }
+  .sp {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: rgba(252,252,252,0.65);
+    border: 1px solid rgba(255,255,255,0.08);
+    white-space: nowrap;
+  }
+  .sp .sp-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--jem-pink);
+    flex-shrink: 0;
+  }
+
+  /* ── Timeline arrow between phases ── */
+  .timeline-arrow {
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 28px;
+    height: 28px;
+    background: var(--jem-pink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--jem-white);
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  /* ── Replace ER badge ── */
+  .er-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 105, 127, 0.15);
+    border: 1.5px solid rgba(255, 105, 127, 0.3);
+    border-radius: 999px;
+    padding: 5px 14px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--jem-pink);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Password Gate ── -->
+<div id="password-screen">
+  <div class="pw-box">
+    <div class="pw-logo"><span>jem</span></div>
+    <h2>This document is protected</h2>
+    <p>Enter the password to view the Servest roadmap.</p>
+    <div class="pw-input-row">
+      <input type="password" id="pw-input" placeholder="Password" autocomplete="off" />
+      <button onclick="checkPassword()">Enter</button>
+    </div>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+
+<!-- ── Slide Content ── -->
+<div id="page-content">
+<div class="slide">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="jem-logo"><span>jem</span></div>
+      <span class="logo-x">&times;</span>
+      <div class="servest-logo">
+        <img src="https://www.servest.co.za/wp-content/uploads/2024/10/Logo-main.png" alt="Servest" />
+      </div>
+    </div>
+    <div class="header-title">
+      <div class="tag">Implementation Roadmap</div>
+      <h1>Time &amp; Attendance — Phased Rollout</h1>
+    </div>
+  </div>
+
+  <!-- Timeline phases -->
+  <div class="timeline-area">
+    <div class="phases">
+
+      <!-- ── PHASE 1 ── -->
+      <div class="phase phase-1">
+        <div class="timeline-arrow">&#8594;</div>
+        <div class="phase-header">
+          <div class="phase-num">Phase 1</div>
+          <div class="phase-title">Clocking &amp; shift reminders</div>
+          <div class="phase-sub">WhatsApp-based attendance — immediate impact</div>
+        </div>
+        <div class="phase-body">
+          <div class="section-label deliver">What we deliver</div>
+
+          <div class="deliver-item">
+            <div class="icon">&#9989;</div>
+            <div>
+              <div class="label">Instant roll call at shift start</div>
+              <div class="desc">Automated WhatsApp check-in the moment a shift begins. No-shows flagged in seconds.</div>
+            </div>
+          </div>
+
+          <div class="deliver-item">
+            <div class="icon">&#128276;</div>
+            <div>
+              <div class="label">Pre-shift reminders</div>
+              <div class="desc">30–60 min before shift. Reduces no-shows before they happen.</div>
+            </div>
+          </div>
+
+          <div class="deliver-item">
+            <div class="icon">&#128202;</div>
+            <div>
+              <div class="label">Live attendance dashboard</div>
+              <div class="desc">Real-time visibility across all 500 sites. Who's on, who's late, who's missing.</div>
+            </div>
+          </div>
+
+          <div class="section-label eliminate">Problems eliminated</div>
+
+          <div class="elim-item">
+            <span class="elim-x">&#10005;</span>
+            <span class="strike">90-minute blind spot before anyone notices a no-show</span>
+          </div>
+          <div class="elim-item">
+            <span class="elim-x">&#10005;</span>
+            <span class="strike">No visibility into who's actually on site</span>
+          </div>
+          <div class="elim-item">
+            <span class="elim-x">&#10005;</span>
+            <span class="strike">Fraudulent time claims (5 min/guard/day = R7.5M/yr)</span>
+          </div>
+
+          <div class="phase-savings">
+            <div class="amount">R5M–R7.5M</div>
+            <div class="savings-label">Annual savings from<br/>revenue leakage recovery &amp; admin reduction</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 2 ── -->
+      <div class="phase phase-2">
+        <div class="timeline-arrow">&#8594;</div>
+        <div class="phase-header">
+          <div class="phase-num">Phase 2</div>
+          <div class="phase-title">AI calls &amp; auto-replacement</div>
+          <div class="phase-sub">Eliminate manual scrambling entirely</div>
+        </div>
+        <div class="phase-body">
+          <div class="section-label deliver">What we deliver</div>
+
+          <div class="deliver-item">
+            <div class="icon">&#129302;</div>
+            <div>
+              <div class="label">AI calls to no-show guards</div>
+              <div class="desc">Automated voice calls to absent guards. Escalation if unanswered. Zero human effort.</div>
+            </div>
+          </div>
+
+          <div class="deliver-item">
+            <div class="icon">&#9889;</div>
+            <div>
+              <div class="label">Automated shift replacement</div>
+              <div class="desc">Offers shifts to nearest, appropriately skilled, available guards. Fair and instant.</div>
+            </div>
+          </div>
+
+          <div class="deliver-item">
+            <div class="icon">&#128200;</div>
+            <div>
+              <div class="label">Escalation workflows</div>
+              <div class="desc">Area managers only involved when the system can't resolve it. Exception-based management.</div>
+            </div>
+          </div>
+
+          <div class="section-label eliminate">Problems eliminated</div>
+
+          <div class="elim-item">
+            <span class="elim-x">&#10005;</span>
+            <span class="strike">400–600 manual calls per day (13–20 hrs of staff time)</span>
+          </div>
+          <div class="elim-item">
+            <span class="elim-x">&#10005;</span>
+            <span class="strike">Control room &amp; area manager scrambling</span>
+          </div>
+          <div class="elim-item">
+            <span class="elim-x">&#10005;</span>
+            <span class="strike">Sites left uncovered during replacement search</span>
+          </div>
+
+          <div class="phase-savings">
+            <div class="amount">R2M–R3.5M</div>
+            <div class="savings-label">Annual savings from<br/>replacement reduction &amp; admin time reclaimed</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PHASE 3 ── -->
+      <div class="phase phase-3">
+        <div class="phase-header">
+          <div class="phase-num">Phase 3</div>
+          <div class="phase-title">Smart rostering</div>
+          <div class="phase-sub">AI scheduling — replaces Easy Roster</div>
+        </div>
+        <div class="phase-body">
+          <div class="section-label deliver">What we deliver</div>
+
+          <div class="deliver-item">
+            <div class="icon">&#129504;</div>
+            <div>
+              <div class="label">AI-optimised rostering</div>
+              <div class="desc">Algorithmic scheduling that minimises overtime and matches skills to sites.</div>
+            </div>
+          </div>
+
+          <div class="deliver-item">
+            <div class="icon">&#9878;&#65039;</div>
+            <div>
+              <div class="label">Fair overtime distribution</div>
+              <div class="desc">Even share for every guard. Transparent, auditable, complaint-free.</div>
+            </div>
+          </div>
+
+          <div class="deliver-item">
+            <div class="icon">&#128279;</div>
+            <div>
+              <div class="label">Easy Roster data ingestion</div>
+              <div class="desc">We import ER as a starting point — then progressively replace it. No big-bang migration.</div>
+            </div>
+          </div>
+
+          <div class="section-label eliminate">Problems eliminated</div>
+
+          <div class="elim-item">
+            <span class="elim-x">&#10005;</span>
+            <span class="strike">Favouritism in overtime allocation</span>
+          </div>
+          <div class="elim-item">
+            <span class="elim-x">&#10005;</span>
+            <span class="strike">Excessive overtime from poor scheduling</span>
+          </div>
+          <div class="elim-item">
+            <span class="elim-x">&#10005;</span>
+            <span class="strike">Wrong skills placed at wrong sites</span>
+          </div>
+
+          <div class="er-badge">&#9888;&#65039; Replaces Easy Roster</div>
+
+          <div class="phase-savings">
+            <div class="amount">R2M–R4M</div>
+            <div class="savings-label">Annual savings from<br/>overtime reduction &amp; skills optimisation</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">
+    <div class="total-block">
+      <div class="total-val">R9M–R15M+</div>
+      <div class="total-meta">
+        <strong>Combined annual savings</strong><br/>
+        6,000 guards &middot; 500 sites &middot; All on WhatsApp
+      </div>
+    </div>
+    <div class="selling-points">
+      <div class="sp"><span class="sp-dot"></span>No app downloads</div>
+      <div class="sp"><span class="sp-dot"></span>No migration risk</div>
+      <div class="sp"><span class="sp-dot"></span>Behaviour change at scale</div>
+      <div class="sp"><span class="sp-dot"></span>Design partnership</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+  async function sha256(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  const CORRECT_HASH = '9f0a763f383ef3f74257c82e8bd4044e0818fa3dbfab1ef498e20e17e3b09844';
+
+  async function checkPassword() {
+    const input = document.getElementById('pw-input').value;
+    const hash = await sha256(input);
+    if (hash === CORRECT_HASH) {
+      document.getElementById('password-screen').classList.add('hidden');
+      document.getElementById('page-content').classList.add('visible');
+      sessionStorage.setItem('servest-auth', 'true');
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+    }
+  }
+
+  document.getElementById('pw-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  if (sessionStorage.getItem('servest-auth') === 'true') {
+    document.getElementById('password-screen').classList.add('hidden');
+    document.getElementById('page-content').classList.add('visible');
+  }
+
+  document.getElementById('pw-input').focus();
+</script>
+
+</body>
+</html>
