@@ -160,9 +160,9 @@
     font-size: 18px;
   }
   .servest-logo img {
-    height: 30px;
+    height: 36px;
     filter: brightness(0) invert(1);
-    opacity: 0.7;
+    opacity: 0.85;
   }
   .header-title {
     text-align: right;
@@ -193,7 +193,7 @@
   .phases {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+    gap: 28px;
     flex: 1;
     min-height: 0;
   }
@@ -202,7 +202,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
   }
 
@@ -210,6 +210,7 @@
   .phase-header {
     padding: 18px 22px 14px;
     flex-shrink: 0;
+    border-radius: 20px 20px 0 0;
   }
   .phase-num {
     font-size: 10px;
@@ -407,21 +408,44 @@
   /* ── Timeline arrow between phases ── */
   .timeline-arrow {
     position: absolute;
-    right: -14px;
+    right: -24px;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 10;
-    width: 28px;
-    height: 28px;
+    z-index: 50;
+    width: 30px;
+    height: 30px;
     background: var(--jem-pink);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--jem-white);
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  }
+
+  /* ── Jem cost badge ── */
+  .jem-cost {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .jem-cost .cost-val {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--jem-white);
+    white-space: nowrap;
+  }
+  .jem-cost .cost-label {
+    font-size: 10px;
+    color: rgba(252,252,252,0.5);
+    line-height: 1.4;
+    font-weight: 500;
   }
 
   /* ── Replace ER badge ── */
@@ -485,8 +509,8 @@
       <div class="phase phase-1">
         <div class="timeline-arrow">&#8594;</div>
         <div class="phase-header">
-          <div class="phase-num">Phase 1</div>
-          <div class="phase-title">Clocking &amp; shift reminders</div>
+          <div class="phase-num">Phase 1 — Now</div>
+          <div class="phase-title">Clocking, reminders &amp; shift replacement</div>
           <div class="phase-sub">WhatsApp-based attendance — immediate impact</div>
         </div>
         <div class="phase-body">
@@ -505,6 +529,14 @@
             <div>
               <div class="label">Pre-shift reminders</div>
               <div class="desc">30–60 min before shift. Reduces no-shows before they happen.</div>
+            </div>
+          </div>
+
+          <div class="deliver-item">
+            <div class="icon">&#128260;</div>
+            <div>
+              <div class="label">Manual shift replacement</div>
+              <div class="desc">Control room triggers replacement via Jem. Nearest skilled, available guard is offered the shift.</div>
             </div>
           </div>
 
@@ -535,6 +567,11 @@
             <div class="amount">R5M–R7.5M</div>
             <div class="savings-label">Annual savings from<br/>revenue leakage recovery &amp; admin reduction</div>
           </div>
+
+          <div class="jem-cost">
+            <div class="cost-val">R15</div>
+            <div class="cost-label">per head / month</div>
+          </div>
         </div>
       </div>
 
@@ -542,7 +579,7 @@
       <div class="phase phase-2">
         <div class="timeline-arrow">&#8594;</div>
         <div class="phase-header">
-          <div class="phase-num">Phase 2</div>
+          <div class="phase-num">Phase 2 — Mid April</div>
           <div class="phase-title">AI calls &amp; auto-replacement</div>
           <div class="phase-sub">Eliminate manual scrambling entirely</div>
         </div>
@@ -592,13 +629,18 @@
             <div class="amount">R2M–R3.5M</div>
             <div class="savings-label">Annual savings from<br/>replacement reduction &amp; admin time reclaimed</div>
           </div>
+
+          <div class="jem-cost">
+            <div class="cost-val">R25</div>
+            <div class="cost-label">per head / month</div>
+          </div>
         </div>
       </div>
 
       <!-- ── PHASE 3 ── -->
       <div class="phase phase-3">
         <div class="phase-header">
-          <div class="phase-num">Phase 3</div>
+          <div class="phase-num">Phase 3 — End May</div>
           <div class="phase-title">Smart rostering</div>
           <div class="phase-sub">AI scheduling — replaces Easy Roster</div>
         </div>
@@ -649,6 +691,11 @@
           <div class="phase-savings">
             <div class="amount">R2M–R4M</div>
             <div class="savings-label">Annual savings from<br/>overtime reduction &amp; skills optimisation</div>
+          </div>
+
+          <div class="jem-cost">
+            <div class="cost-val">R40</div>
+            <div class="cost-label">per head / month</div>
           </div>
         </div>
       </div>
